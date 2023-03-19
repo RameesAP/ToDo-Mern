@@ -1,31 +1,32 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from 'cors'
-import todo from "./models/todo.js";
+import dotenv from 'dotenv'
+import morgan from 'morgan'
+import bodyParser from "body-parser";
 
 
 const app = express()
 
 
 app.use(express.json())
+app.use(bodyParser.json())
 app.use(cors())
+app.use(morgan('dev'))
+dotenv.config()
+
+mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true }).
+    then(() => app.listen(process.env.PORT, () => console.log(`Listening at ${process.env.PORT}`))).
+    catch((error) => { console.log(error); })
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/mern-todo", {
-    useNewUrlParser: true, useUnifiedTopology: true
-})
-    .then(() => console.log("conneted to DB"))
-    .catch((error) => console.log(error));
+
 
 
 import postRoute from './Routes/Posts.js'
-app.use('/posts',postRoute)
+app.use('/',postRoute)
 
 
-app.get('/todos', async (req, res) => {
-    const todos = await todo.find();
 
-    res.json(todos)
-})
 
-app.listen(3000, () => console.log("server started on port 3000"))
+
