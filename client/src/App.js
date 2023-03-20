@@ -1,20 +1,24 @@
 import './App.css';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-const 
+const API_BASE = "http://localhost:5000"
 
 function App() {
-  const [todo,setTodo]=useState([])
-  const [popupactive,setPopupActive]=useState(false)
-  const [newTodo,setNewTodo]=useState("")
+  const [todos, setTodos] = useState([])
+  const [popupactive, setPopupActive] = useState(false)
+  const [newTodo, setNewTodo] = useState("")
 
 
-  useEffect(()=>{
-    getTodos()
-  },[])
+  useEffect(() => {
+    GetTodos()
 
-  const getTodos=()=>{
-    fetch
+  }, [])
+
+  const GetTodos = () => {
+    fetch(API_BASE + "/todos")
+      .then(res => res.json())
+      .then(data => setTodos(data))
+      .catch(err => console.log("error : ", err))
   }
 
   return (
@@ -23,21 +27,19 @@ function App() {
       <h4>Your tasks</h4>
 
       <div className="todos">
-        <div className="todo">
-          <div className="checkbox"></div>
+        {todos.map(todo => (
+          <div className={
+            "todo " + (todo.complete ? "is-complete" : "")
+          } key={todo._id}>
 
-          <div className="text">Get your bread</div>
+            <div className="checkbox"></div>
 
-          <div className="delete-todo">X</div>
-        </div>
+            <div className="text">{todo.text}</div>
 
-        <div className="todo is-complete">
-          <div className="checkbox"></div>
+            <div className="delete-todo">X</div>
+          </div>
+        ))}
 
-          <div className="text">Get your Milk</div>
-
-          <div className="delete-todo">X</div>
-        </div>
 
       </div>
     </div>
