@@ -25,8 +25,20 @@ export const deletePost = async (req, res) => {
     try {
         const post = await todoModels.findById(id)
         await post.deleteOne()
+        res.status(200).json(post)
     } catch (error) {
         res.status(500).json(error)
     }
 
+}
+export const completed=async(req,res)=>{
+    const id = req.params.id
+    try {
+        const todo=await todoModels.findById(id)
+        todo.complete=!todo.complete
+        res.status(200).json(todo)
+    } catch (error) {
+        res.status(500).json(error)
+        
+    }
 }
