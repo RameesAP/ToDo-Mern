@@ -35,7 +35,8 @@ export const completed=async(req,res)=>{
     const id = req.params.id
     try {
         const todo=await todoModels.findById(id)
-        todo.complete=!todo.complete
+         todo.complete = !todo.complete 
+         await todo.save()
         res.status(200).json(todo)
     } catch (error) {
         res.status(500).json(error)

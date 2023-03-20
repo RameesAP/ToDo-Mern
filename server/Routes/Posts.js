@@ -3,9 +3,9 @@ import { completed, createPost, deletePost, getAllPosts } from '../controllers/P
 const router=express.Router();
 
 
-router.post('/',createPost)
+router.post('/create',createPost)
 router.get('/',getAllPosts)
-router.delete('/:id',deletePost)
-router.put('/:id',completed)
+router.delete('/delete/:id',deletePost)
+router.get('/complete/:id',completed)
 
 export default router
