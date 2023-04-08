@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopolo
 
 
 import postRoute from './Routes/Posts.js'
-app.use('/',postRoute)
+app.use('/todos',postRoute)
 
 
 
