@@ -4,7 +4,7 @@ const router=express.Router();
 
 
 router.post('/create',createPost)
-router.get('/',getAllPosts)
+router.get('/getall',getAllPosts)
 router.delete('/delete/:id',deletePost)
 router.get('/complete/:id',completed)
 
