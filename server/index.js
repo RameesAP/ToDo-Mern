@@ -20,9 +20,6 @@ mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopolo
     catch((error) => { console.log(error); })
 
 
-
-
-
 import postRoute from './Routes/Posts.js'
 app.use('/todos',postRoute)
 
