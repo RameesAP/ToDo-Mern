@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 
-const API_BASE = "http://localhost:5000"
+const API_BASE = "https://todo-back-hnvw.onrender.com"
 
 function App() {
   const [todos, setTodos] = useState([])
