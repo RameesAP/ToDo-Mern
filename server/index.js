@@ -12,7 +12,7 @@ const app = express()
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(cors({
-    origin: '*',
+    origin: 'https://flourishing-twilight-bb4b99.netlify.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
 }))
 app.use(morgan('dev'))
